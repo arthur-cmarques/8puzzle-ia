@@ -551,7 +551,7 @@ int main()
         printf("=== 8-Puzzle ===\n\n");
         printf("1 - Jogar\n");
         printf("2 - Busca em Largura (IA)\n");
-        printf("3 - Busca em Profundidade Limitada (IA)\n");
+        printf("3 - Aprofundamento Iterativo (IA)\n");
         printf("0 - Sair\n");
         printf("Escolha uma opção: ");
         int lido = le_inteiro(&opcao);
@@ -604,9 +604,9 @@ int main()
                 busca_em_largura(puzzle);
                 break;
             case 3:
-                printf("--- Busca em Profundidade Limitada ---\n\n");
+                printf("--- Aprofundamento Iterativo (busca em profundidade com limite 1, 2, ..., N) ---\n\n");
                 int i, achou = 0, limite;
-                printf("\nDigite um limite para a busca: ");
+                printf("\nDigite o limite máximo N de profundidade: ");
                 if (le_inteiro(&limite) != 1)
                 {
                     limite = 0;
