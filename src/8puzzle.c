@@ -12,6 +12,21 @@ static void limpa_tela(void)
 #endif
 }
 
+/* Lê um inteiro. Devolve 1 se leu, 0 se a entrada não era um número
+ * (a linha é descartada) e -1 se a entrada acabou. */
+static int le_inteiro(int *valor)
+{
+    int lido = scanf("%d", valor);
+    if (lido == 0)
+    {
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF)
+        {
+        }
+    }
+    return lido == EOF ? -1 : lido;
+}
+
 void imprimir_puzzle(int puzzle[3][3])
 {
     for (int i = 0; i < 3; i++)
@@ -200,7 +215,15 @@ int main()
         imprimir_puzzle(puzzle);
 
         printf("\nDigite o numero que voce quer mover para o espaco vazio: ");
-        scanf("%d", &numero_movimento);
+        int lido = le_inteiro(&numero_movimento);
+        if (lido == -1)
+        {
+            return 0; /* a entrada acabou: encerra sem declarar vitória */
+        }
+        if (lido == 0)
+        {
+            numero_movimento = -2; /* não corresponde a nenhuma peça */
+        }
 
         funcao_suc(puzzle, puzzle_novo, numero_movimento);
 

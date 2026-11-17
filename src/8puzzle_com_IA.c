@@ -16,6 +16,21 @@ static void limpa_tela(void)
 #endif
 }
 
+/* Lê um inteiro. Devolve 1 se leu, 0 se a entrada não era um número
+ * (a linha é descartada) e -1 se a entrada acabou. */
+static int le_inteiro(int *valor)
+{
+    int lido = scanf("%d", valor);
+    if (lido == 0)
+    {
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF)
+        {
+        }
+    }
+    return lido == EOF ? -1 : lido;
+}
+
 typedef struct no
 {
     int info[3][3];
@@ -539,7 +554,15 @@ int main()
         printf("3 - Busca em Profundidade Limitada (IA)\n");
         printf("0 - Sair\n");
         printf("Escolha uma opção: ");
-        scanf("%d", &opcao);
+        int lido = le_inteiro(&opcao);
+        if (lido == -1)
+        {
+            opcao = 0;
+        }
+        else if (lido == 0)
+        {
+            opcao = -1;
+        }
         limpa_tela();
         printf("=== 8-Puzzle ===\n");
 
@@ -552,7 +575,15 @@ int main()
                     printf("  --- Jogue ---\n\n");
                     imprimir_puzzle(puzzle_novo);
                     printf("\nDigite a peça para mover: ");
-                    scanf("%d", &numero_movimento);
+                    lido = le_inteiro(&numero_movimento);
+                    if (lido == -1)
+                    {
+                        numero_movimento = -1;
+                    }
+                    else if (lido == 0)
+                    {
+                        numero_movimento = -2; /* não corresponde a nenhuma peça */
+                    }
                     limpa_tela();
                     if(numero_movimento == -1)
                     {
@@ -576,7 +607,10 @@ int main()
                 printf("--- Busca em Profundidade Limitada ---\n\n");
                 int i, achou = 0, limite;
                 printf("\nDigite um limite para a busca: ");
-                scanf("%d", &limite);
+                if (le_inteiro(&limite) != 1)
+                {
+                    limite = 0;
+                }
                 for(i=1; i<=limite; i++)
                 {
                     achou = busca_profundidade_limitada(puzzle, i);
