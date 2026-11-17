@@ -186,7 +186,7 @@ void imprime_caminho(No* no_final)
         push(pilha_aux, atual->info, NULL);
         atual = atual->pai;
         }
-        printf("\t\nPasso a passo da solução:\n");
+        printf("\t\nPasso a passo da soluÃ§Ã£o:\n");
         No* passos;
         while (vaziaPilha(pilha_aux) == 0)
         {
@@ -484,7 +484,7 @@ void busca_em_largura(int puzzle_novo[3][3])
     }
     if (achou == 0)
     {
-        printf("\nNenhuma solução foi encontrada\n");
+        printf("\nNenhuma soluÃ§Ã£o foi encontrada\n");
     }
 }
 
@@ -553,7 +553,7 @@ int main()
         printf("2 - Busca em Largura (IA)\n");
         printf("3 - Busca em Profundidade Limitada (IA)\n");
         printf("0 - Sair\n");
-        printf("Escolha uma opção: ");
+        printf("Escolha uma opÃ§Ã£o: ");
         scanf("%d", &opcao);
         system("cls");
         printf("=== 8-Puzzle ===\n");
@@ -566,7 +566,7 @@ int main()
                 {
                     printf("  --- Jogue ---\n\n");
                     imprimir_puzzle(puzzle_novo);
-                    printf("\nDigite a peça para mover: ");
+                    printf("\nDigite a peÃ§a para mover: ");
                     scanf("%d", &numero_movimento);
                     system("cls");
                     if(numero_movimento == -1)
@@ -580,7 +580,7 @@ int main()
                 }
                 if(completo(puzzle_novo) == 1)
                 {
-                    printf("Parabéns, você completou o puzzle!\n\n");
+                    printf("ParabÃ©ns, vocÃª completou o puzzle!\n\n");
                 }
                 break;
             case 2:
@@ -602,14 +602,14 @@ int main()
                 }
                 if(achou == 0)
                 {
-                    printf("\nNenhuma solução encontrada até o limite %d\n", limite);
+                    printf("\nNenhuma soluÃ§Ã£o encontrada atÃ© o limite %d\n", limite);
                 }
                 break;
             case 0:
                 printf("\nEncerrando\n");
                 break;
             default:
-                printf("\nOpção inválida\n");
+                printf("\nOpÃ§Ã£o invÃ¡lida\n");
         }
     }while(opcao != 0);
     return 0;
