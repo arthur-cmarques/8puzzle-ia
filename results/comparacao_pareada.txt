@@ -1,0 +1,12 @@
+results/bench.csv | puzzles resolvidos pelos dois: 24
+  estados  BFS: média 1187 mediana 430 máx 8299 | IDS: média 403830 mediana 17031 máx 4781643
+  tempo ms BFS: média 0.08 mediana 0.019 máx 0.8 | IDS: média 21.42 mediana 0.416 máx 265.6
+  nós pico BFS máx 14170 (0.9 MiB) | IDS máx 2213735 (135.1 MiB)
+  razão estados IDS/BFS: mediana 39.8, mín 2.1, máx 715.0
+  caminho médio (igual nos dois): 9.08
+results/bench_cap20M.csv | puzzles resolvidos pelos dois: 26
+  estados  BFS: média 2848 mediana 554 máx 30431 | IDS: média 2296687 mediana 30228 máx 26059193
+  tempo ms BFS: média 0.18 mediana 0.028 máx 1.7 | IDS: média 117.04 mediana 0.740 máx 1441.3
+  nós pico BFS máx 51228 (3.1 MiB) | IDS máx 13691016 (835.6 MiB)
+  razão estados IDS/BFS: mediana 48.0, mín 2.1, máx 1584.1
+  caminho médio (igual nos dois): 9.62

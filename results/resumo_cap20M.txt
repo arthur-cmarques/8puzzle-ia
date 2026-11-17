@@ -1,0 +1,20 @@
+Medição: 30 puzzles (sementes 1 a 30), embaralhamento de 40 movimentos,
+limite de 20000000 nós por chamada de busca, IDS até o limite 40.
+
+Busca em largura: resolveu 30 de 30
+  estados visitados: média 145408, mediana 645, máximo 3478457
+  tempo (ms): média 15.438, mediana 0.033, máximo 371.037
+  caminho: média 11.13 movimentos
+  pico de nós vivos: máximo 6167776 (~376.5 MiB com sizeof(No)=64)
+Aprofundamento iterativo: resolveu 26 de 30
+  estados visitados: média 2296687, mediana 33200, máximo 26059193
+  tempo (ms): média 117.038, mediana 0.766, máximo 1441.268
+  caminho: média 9.62 movimentos
+  pico de nós vivos: máximo 13691016 (~835.6 MiB com sizeof(No)=64)
+
+Resolvidos pelos dois: 26; com caminho de mesmo tamanho: 26
+
+Ambiente:
+gcc (GCC) 12.5.0
+Linux x86_64
+model name	: Intel(R) Core(TM) Ultra 9 285H
