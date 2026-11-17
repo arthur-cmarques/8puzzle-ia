@@ -38,8 +38,6 @@ No Windows, o código usa `cls` e define a saída do console como UTF-8 (`SetCon
 
 **Autores:** Arthur Costa Marques, Fabio Barbosa Gonsalez, Felipe Salinas Caodaglio e Patrick Rovaron Franco.
 
-**Minha contribuição:** [PREENCHER]
-
 ## O que foi alterado depois da entrega
 
 O código entregue está no primeiro commit de `src/` (`git log`), sem alterações. Depois dele, em commits separados:
