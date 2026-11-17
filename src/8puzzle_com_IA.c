@@ -1,7 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <locale.h>
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
+/* Limpa a tela de forma portável (cls no Windows, clear nos demais). */
+static void limpa_tela(void)
+{
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
 typedef struct no
 {
     int info[3][3];
@@ -541,7 +555,9 @@ int busca_profundidade_limitada(int puzzle_inicial[3][3], int limite_maximo)
 
 int main()
 {
-    setlocale(LC_ALL, "Portuguese");
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8); /* os fontes são UTF-8 */
+#endif
     int puzzle[3][3], puzzle_novo[3][3], numero_movimento, opcao;
 
     srand(time(NULL));
@@ -555,7 +571,7 @@ int main()
         printf("0 - Sair\n");
         printf("Escolha uma opção: ");
         scanf("%d", &opcao);
-        system("cls");
+        limpa_tela();
         printf("=== 8-Puzzle ===\n");
 
         switch(opcao)
@@ -568,7 +584,7 @@ int main()
                     imprimir_puzzle(puzzle_novo);
                     printf("\nDigite a peça para mover: ");
                     scanf("%d", &numero_movimento);
-                    system("cls");
+                    limpa_tela();
                     if(numero_movimento == -1)
                     {
                         break;

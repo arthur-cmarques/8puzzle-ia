@@ -1,6 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+/* Limpa a tela de forma portável (cls no Windows, clear nos demais). */
+static void limpa_tela(void)
+{
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
 void imprimir_puzzle(int puzzle[3][3])
 {
     for (int i = 0; i < 3; i++)
@@ -185,7 +196,7 @@ int main()
 
     while (completo(puzzle) == 0)
     {
-        system("cls");
+        limpa_tela();
         imprimir_puzzle(puzzle);
 
         printf("\nDigite o numero que voce quer mover para o espaco vazio: ");
@@ -196,7 +207,7 @@ int main()
         copia_matriz(puzzle_novo, puzzle);
     }
 
-    system("cls");
+    limpa_tela();
     imprimir_puzzle(puzzle);
     printf("\nvoce completou o puzzle\n");
 
