@@ -362,11 +362,40 @@ void gerar_puzzle_inicial(int puzzle[3][3])
     }
 }
 
+int matrizes_iguais(int a[3][3], int b[3][3])
+{
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (a[i][j] != b[i][j])
+            {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+/* Gera o filho de 'atual' movendo 'peca' para o espaço vazio e o insere na fila,
+ * a menos que seja igual ao estado do pai (única poda da busca em largura). */
+void gera_filho_largura(Fila* fila, No* atual, int peca)
+{
+    int filho_temp[3][3];
+    copia_matriz(atual->info, filho_temp);
+    funcao_suc(atual->info, filho_temp, peca);
+
+    if (atual->pai == NULL || matrizes_iguais(filho_temp, atual->pai->info) == 0)
+    {
+        InsereFila(fila, filho_temp, atual);
+    }
+}
+
 void busca_em_largura(int puzzle_novo[3][3])
 {
     Fila* fila_busca_largura = CriaFila();
     InsereFila(fila_busca_largura, puzzle_novo, NULL);
-    int qtd_estados = 0, achou = 0, linha_do_zero, coluna_do_zero, filho_temp[3][3], igual_pai, k, m;
+    int qtd_estados = 0, achou = 0, linha_do_zero, coluna_do_zero, filho_temp[3][3];
 
     No* atual;
     while (VaziaFila(fila_busca_largura) == 0 && achou == 0)
@@ -386,114 +415,19 @@ void busca_em_largura(int puzzle_novo[3][3])
 
         if (linha_do_zero > 0)
         {
-            int peca = atual->info[linha_do_zero-1][coluna_do_zero];
-            copia_matriz(atual->info, filho_temp);
-            funcao_suc(atual->info, filho_temp, peca);
-
-            igual_pai = 0;
-
-            if (atual->pai != NULL)
-            {
-                igual_pai = 1;
-                for (k = 0; k < 3; k++)
-                {
-                    for (m = 0; m < 3; m++)
-                    {
-                        if (filho_temp[k][m] != atual->pai->info[k][m])
-                        {
-                            igual_pai = 0;
-                        }
-                    }
-                }
-            }
-            if (atual->pai == NULL || igual_pai == 0)
-            {
-                InsereFila(fila_busca_largura, filho_temp, atual);
-            }
+            gera_filho_largura(fila_busca_largura, atual, atual->info[linha_do_zero-1][coluna_do_zero]);
         }
-
         if (linha_do_zero < 2)
         {
-            int peca = atual->info[linha_do_zero+1][coluna_do_zero];
-            copia_matriz(atual->info, filho_temp);
-            funcao_suc(atual->info, filho_temp, peca);
-
-            igual_pai = 0;
-
-            if (atual->pai != NULL)
-            {
-                igual_pai = 1;
-                for (k = 0; k < 3; k++)
-                {
-                    for (m = 0; m < 3; m++)
-                    {
-                        if (filho_temp[k][m] != atual->pai->info[k][m])
-                        {
-                            igual_pai = 0;
-                        }
-                    }
-                }
-            }
-            if (atual->pai == NULL || igual_pai == 0)
-            {
-                InsereFila(fila_busca_largura, filho_temp, atual);
-            }
+            gera_filho_largura(fila_busca_largura, atual, atual->info[linha_do_zero+1][coluna_do_zero]);
         }
-
         if (coluna_do_zero > 0)
         {
-            int peca = atual->info[linha_do_zero][coluna_do_zero-1];
-            copia_matriz(atual->info, filho_temp);
-            funcao_suc(atual->info, filho_temp, peca);
-
-            igual_pai = 0;
-
-            if (atual->pai != NULL)
-            {
-                igual_pai = 1;
-                for (k = 0; k < 3; k++)
-                {
-                    for (m = 0; m < 3; m++)
-                    {
-                        if (filho_temp[k][m] != atual->pai->info[k][m])
-                        {
-                            igual_pai = 0;
-                        }
-                    }
-                }
-            }
-            if (atual->pai == NULL || igual_pai == 0)
-            {
-                InsereFila(fila_busca_largura, filho_temp, atual);
-            }
+            gera_filho_largura(fila_busca_largura, atual, atual->info[linha_do_zero][coluna_do_zero-1]);
         }
-
         if (coluna_do_zero < 2)
         {
-            int peca = atual->info[linha_do_zero][coluna_do_zero+1];
-            copia_matriz(atual->info, filho_temp);
-            funcao_suc(atual->info, filho_temp, peca);
-
-            igual_pai = 0;
-
-            if (atual->pai != NULL)
-            {
-                igual_pai = 1;
-                for (k = 0; k < 3; k++)
-                {
-                    for (m = 0; m < 3; m++)
-                    {
-                        if (filho_temp[k][m] != atual->pai->info[k][m])
-                        {
-                            igual_pai = 0;
-                        }
-                    }
-                }
-            }
-            if (atual->pai == NULL || igual_pai == 0)
-            {
-                InsereFila(fila_busca_largura, filho_temp, atual);
-            }
+            gera_filho_largura(fila_busca_largura, atual, atual->info[linha_do_zero][coluna_do_zero+1]);
         }
     }
     if (achou == 0)
