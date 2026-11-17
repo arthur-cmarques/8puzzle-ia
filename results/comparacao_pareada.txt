@@ -1,12 +1,12 @@
 results/bench.csv | puzzles resolvidos pelos dois: 24
-  estados  BFS: mÈdia 1187 mediana 430 m·x 8299 | IDS: mÈdia 403830 mediana 17031 m·x 4781643
-  tempo ms BFS: mÈdia 0.08 mediana 0.019 m·x 0.8 | IDS: mÈdia 21.42 mediana 0.416 m·x 265.6
-  nÛs pico BFS m·x 14170 (0.9 MiB) | IDS m·x 2213735 (135.1 MiB)
-  raz„o estados IDS/BFS: mediana 39.8, mÌn 2.1, m·x 715.0
-  caminho mÈdio (igual nos dois): 9.08
+  estados  BFS: m√©dia 1187 mediana 430 m√°x 8299 | IDS: m√©dia 403830 mediana 17031 m√°x 4781643
+  tempo ms BFS: m√©dia 0.08 mediana 0.019 m√°x 0.8 | IDS: m√©dia 21.42 mediana 0.416 m√°x 265.6
+  n√≥s pico BFS m√°x 14170 (0.9 MiB) | IDS m√°x 2213735 (135.1 MiB)
+  raz√£o estados IDS/BFS: mediana 39.8, m√≠n 2.1, m√°x 715.0
+  caminho m√©dio (igual nos dois): 9.08
 results/bench_cap20M.csv | puzzles resolvidos pelos dois: 26
-  estados  BFS: mÈdia 2848 mediana 554 m·x 30431 | IDS: mÈdia 2296687 mediana 30228 m·x 26059193
-  tempo ms BFS: mÈdia 0.18 mediana 0.028 m·x 1.7 | IDS: mÈdia 117.04 mediana 0.740 m·x 1441.3
-  nÛs pico BFS m·x 51228 (3.1 MiB) | IDS m·x 13691016 (835.6 MiB)
-  raz„o estados IDS/BFS: mediana 48.0, mÌn 2.1, m·x 1584.1
-  caminho mÈdio (igual nos dois): 9.62
+  estados  BFS: m√©dia 2848 mediana 554 m√°x 30431 | IDS: m√©dia 2296687 mediana 30228 m√°x 26059193
+  tempo ms BFS: m√©dia 0.18 mediana 0.028 m√°x 1.7 | IDS: m√©dia 117.04 mediana 0.740 m√°x 1441.3
+  n√≥s pico BFS m√°x 51228 (3.1 MiB) | IDS m√°x 13691016 (835.6 MiB)
+  raz√£o estados IDS/BFS: mediana 48.0, m√≠n 2.1, m√°x 1584.1
+  caminho m√©dio (igual nos dois): 9.62
