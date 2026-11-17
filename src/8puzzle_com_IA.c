@@ -215,12 +215,25 @@ void imprime_caminho(No* no_final)
             passos = pop(pilha_aux);
 
             imprimir_puzzle(passos->info);
+            free(passos);
 
             if (vaziaPilha(pilha_aux) == 0)
             {
                 printf("\n\n");
             }
         }
+        free(pilha_aux);
+    }
+}
+
+/* Libera todos os nós de uma lista encadeada por 'prox'. */
+void libera_lista(No* lista)
+{
+    while (lista != NULL)
+    {
+        No* proximo = lista->prox;
+        free(lista);
+        lista = proximo;
     }
 }
 
@@ -406,9 +419,12 @@ void busca_em_largura(int puzzle_novo[3][3])
     int qtd_estados = 0, achou = 0, linha_do_zero, coluna_do_zero, filho_temp[3][3];
 
     No* atual;
+    No* retirados = NULL; /* nós já retirados da fila; ficam vivos porque os filhos apontam para o pai */
     while (VaziaFila(fila_busca_largura) == 0 && achou == 0)
     {
         atual = RetiraFila(fila_busca_largura);
+        atual->prox = retirados;
+        retirados = atual;
         qtd_estados++;
 
         if (completo(atual->info) == 1)
@@ -442,6 +458,9 @@ void busca_em_largura(int puzzle_novo[3][3])
     {
         printf("\nNenhuma solução foi encontrada\n");
     }
+    libera_lista(retirados);
+    libera_lista(fila_busca_largura->inicio);
+    free(fila_busca_largura);
 }
 
 int busca_profundidade_limitada(int puzzle_inicial[3][3], int limite_maximo)
@@ -450,16 +469,21 @@ int busca_profundidade_limitada(int puzzle_inicial[3][3], int limite_maximo)
     push(pilha_busca_profundidade, puzzle_inicial, NULL);
     int qtd_estados = 0, linha_do_zero, coluna_do_zero, filho_temp[3][3];
 
+    int resultado = 0;
     No* atual;
+    No* retirados = NULL; /* nós já retirados da pilha; ficam vivos porque os filhos apontam para o pai */
     while(vaziaPilha(pilha_busca_profundidade) == 0)
     {
         atual = pop(pilha_busca_profundidade);
+        atual->prox = retirados;
+        retirados = atual;
         qtd_estados++;
         if(completo(atual->info) == 1)
         {
             printf("%d estados visitados\n", qtd_estados);
             imprime_caminho(atual);
-            return 1;
+            resultado = 1;
+            break;
         }
 
         if (atual->profundidade < limite_maximo)
@@ -492,7 +516,10 @@ int busca_profundidade_limitada(int puzzle_inicial[3][3], int limite_maximo)
             }
         }
     }
-    return 0;
+    libera_lista(retirados);
+    libera_lista(pilha_busca_profundidade->TOPO);
+    free(pilha_busca_profundidade);
+    return resultado;
 }
 
 int main()
