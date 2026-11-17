@@ -28,7 +28,7 @@ gcc -Wall -Wextra -o 8puzzle_com_IA src/8puzzle_com_IA.c
 
 Menu: `1` jogar (digite o número da peça que quer mover para o espaço vazio, `-1` volta ao menu), `2` busca em largura, `3` aprofundamento iterativo (pede o limite máximo N). O jogo base compila do mesmo jeito (`src/8puzzle.c`).
 
-No Windows, o código usa `cls` e define a saída do console como UTF-8 (`SetConsoleOutputCP`). **Esse ramo não foi testado**: tudo foi compilado e executado apenas em Linux (gcc 12).
+No Windows, o código usa `cls` e define a saída do console como UTF-8 (`SetConsoleOutputCP`). Foi testado em Windows 11 com MinGW-w64 (gcc 16.2): compila sem avisos, o console passa de CP 850 para UTF-8, os acentos saem corretos e o `--bench` gera exatamente os mesmos puzzles e contagens que no Linux (gcc 12). O teste em console foi feito por script, sem inspeção visual da janela.
 
 ## Créditos e o que é original
 
