@@ -120,7 +120,7 @@ int completo(int puzzle[3][3])
 
 void gerar_puzzle_inicial(int puzzle[3][3])
 {
-    int linha_zero, coluna_zero, achou, i, j, x;
+    int linha_zero = 0, coluna_zero = 0, achou, i, x;
     int resolvido[3][3] = {{1, 2, 3},
                            {4, 5, 6},
                            {7, 8, 0}};

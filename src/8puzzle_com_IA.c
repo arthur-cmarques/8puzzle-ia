@@ -127,6 +127,14 @@ No* ins_fim (No *fim, int estado_matriz[3][3], No* pai_do_no)
     copia_matriz(estado_matriz, p->info);
     p->prox = NULL;
     p->pai = pai_do_no;
+    if (pai_do_no == NULL)
+    {
+        p->profundidade = 0;
+    }
+    else
+    {
+        p->profundidade = pai_do_no->profundidade+1;
+    }
     if (fim != NULL)
     {
         fim->prox = p;
@@ -298,7 +306,7 @@ int completo(int puzzle[3][3])
 
 void gerar_puzzle_inicial(int puzzle[3][3])
 {
-    int linha_zero, coluna_zero, achou, i, j, x;
+    int linha_zero = 0, coluna_zero = 0, achou, i, x;
     int resolvido[3][3] = {{1, 2, 3},
                            {4, 5, 6},
                            {7, 8, 0}};
