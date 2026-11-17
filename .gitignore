@@ -1,0 +1,10 @@
+# binários e objetos
+*.exe
+*.o
+*.out
+/build/
+/8puzzle
+/8puzzle_com_IA
+
+# material que não deve ir para o repositório
+*.pdf
